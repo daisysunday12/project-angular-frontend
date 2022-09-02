@@ -14,4 +14,10 @@ export class ServicesService {
     const url = environment.API_EndPoint + 'pekerjaan';
     return this.httpClient.get(url).pipe(map(data => data));
   }
+
+  // login
+  login(username: any, password: any) {
+    const url = environment.API_EndPoint + 'auth';
+    return this.httpClient.post<any>(url, { username: username, password: password }).pipe(map((data) => data));
+  }
 }
