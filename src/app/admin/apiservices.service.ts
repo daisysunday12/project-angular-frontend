@@ -20,19 +20,20 @@ export class ApiservicesService {
       this.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + tkn.token
+          'Authorization': 'Bearer ' + tkn.token,
         })
       }
     }
-  }
+  };
 
   getPekerjaan() {
     const url = environment.API_EndPoint + 'pekerjaan/pekerjaanbackend';
-    this.getToken()
+    this.getToken();
     return this.httpClient.get(url, this.httpOptions).pipe(map((data) => data));
-  }
+  };
   deletePekerjaan(params: any): Observable<any> {
     const url = environment.API_EndPoint + 'pekerjaan/del/' + params;
-    return this.httpClient.delete<any>(url).pipe(map((data) => data));
+    this.getToken();
+    return this.httpClient.delete<any>(url, this.httpOptions).pipe(map((data) => data));
   }
 }

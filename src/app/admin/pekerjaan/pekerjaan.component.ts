@@ -63,7 +63,6 @@ export class PekerjaanComponent implements OnInit {
     viewButton.addEventListener('click', () => {
       this.viewPekerjaanDetails(param)
     })
-
     // handle view edit
     let editButton = div.querySelector('.btn-warning')
     // @ts-ignore
@@ -87,14 +86,12 @@ export class PekerjaanComponent implements OnInit {
     return div;
   }
   viewPekerjaanDetails(param: any) {
-    // console.log('params', param.data._id)
-    this.router.navigate(['/crud/pekerjaan-details/' + param.data._id])
+    this.router.navigate(['/crud/pekerjaan-details/' + param.data.id])
   }
   editPekerjaanDetails(param: any) {
-    this.router.navigate(['/crud/update-pekerjaan/' + param.data._id])
+    this.router.navigate(['/crud/update-pekerjaan/' + param.data.id])
   }
   deletePekerjaan(param: any) {
-    // console.log(param);
     const that = this;
     Swal.fire({
       title: 'Are You Sure?',
@@ -106,7 +103,7 @@ export class PekerjaanComponent implements OnInit {
       confirmButtonText: 'Yes, Delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        that.apiserviceService.deletePekerjaan(param.data._id).subscribe(res => {
+        that.apiserviceService.deletePekerjaan(param.data.id).subscribe(res => {
           if (res.message === 'Data Berhasil Dihapus') {
             this.getPekerjaanList();
             Swal.fire(
@@ -128,7 +125,7 @@ export class PekerjaanComponent implements OnInit {
   }
   // upload file
   uploadFile(param: any) {
-    this.router.navigate(['/crud/upload-file/' + param.data._id])
+    this.router.navigate(['/crud/upload-file/' + param.data.id])
   }
 
   rowData: any = [];
