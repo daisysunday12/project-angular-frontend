@@ -61,7 +61,7 @@ export class ApiservicesService {
   }
 
   updatePekerjaanDetails(params: any, data: any): Observable<any> {
-    const url = environment.API_EndPoint + 'pekerjaan/update/' + params;
+    const url = environment.API_EndPoint + 'pekerjaan/ed/' + params;
     return this.httpClient.put<any>(url, data).pipe(map((data) => data));
   }
 

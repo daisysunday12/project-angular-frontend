@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'create-pekerjaan', component: PekerjaanFormComponent },
   { path: 'details-pekerjaan/:id', component: PekerjaanDetailsComponent },
   { path: 'upload-pekerjaan/:id', component: PekerjaanUploadFileComponent },
+  { path: 'update-pekerjaan/:id', component: PekerjaanFormComponent },
   { path: '**', component: NonFoundComponent },
 ];
 
