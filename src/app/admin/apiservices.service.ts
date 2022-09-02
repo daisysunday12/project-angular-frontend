@@ -56,7 +56,7 @@ export class ApiservicesService {
   }
 
   loadPekerjaanInfo(data: any): Observable<Pekerjaan> {
-    const url = environment.API_EndPoint + 'pekerjaan/detail/' + data;
+    const url = environment.API_EndPoint + 'pekerjaan/' + data;
     return this.httpClient.get<Pekerjaan>(url).pipe(map((data) => data));
   }
 

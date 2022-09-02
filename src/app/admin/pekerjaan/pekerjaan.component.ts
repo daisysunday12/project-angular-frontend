@@ -86,10 +86,10 @@ export class PekerjaanComponent implements OnInit {
     return div;
   }
   viewPekerjaanDetails(param: any) {
-    this.router.navigate(['/crud/pekerjaan-details/' + param.data.id])
+    this.router.navigate(['/admin/details-pekerjaan/' + param.data.id])
   }
   editPekerjaanDetails(param: any) {
-    this.router.navigate(['/crud/update-pekerjaan/' + param.data.id])
+    this.router.navigate(['/admin/update-pekerjaan/' + param.data.id])
   }
   deletePekerjaan(param: any) {
     const that = this;
