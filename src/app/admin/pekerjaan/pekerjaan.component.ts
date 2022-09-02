@@ -125,7 +125,7 @@ export class PekerjaanComponent implements OnInit {
   }
   // upload file
   uploadFile(param: any) {
-    this.router.navigate(['/crud/upload-file/' + param.data.id])
+    this.router.navigate(['/admin/upload-pekerjaan/' + param.data.id])
   }
 
   rowData: any = [];

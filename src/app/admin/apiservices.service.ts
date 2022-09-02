@@ -52,8 +52,7 @@ export class ApiservicesService {
   }
   createPekerjaan(data: any): Observable<any> {
     const url = environment.API_EndPoint + 'pekerjaan/add/';
-    // this.getToken1();
-    return this.httpClient.post<any>(url, data, this.httpOptions1).pipe(map((data) => data));
+    return this.httpClient.post<any>(url, data).pipe(map((data) => data));
   }
 
   loadPekerjaanInfo(data: any): Observable<Pekerjaan> {
@@ -63,6 +62,11 @@ export class ApiservicesService {
 
   updatePekerjaanDetails(params: any, data: any): Observable<any> {
     const url = environment.API_EndPoint + 'pekerjaan/update/' + params;
+    return this.httpClient.put<any>(url, data).pipe(map((data) => data));
+  }
+
+  uploadPekerjaan(param: any, data: any): Observable<any> {
+    const url = environment.API_EndPoint + 'pekerjaan/up/' + param;
     return this.httpClient.put<any>(url, data).pipe(map((data) => data));
   }
 }
