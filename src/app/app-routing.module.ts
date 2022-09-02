@@ -12,6 +12,10 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'pekerjaan', component: PekerjaanComponent },
   { path: 'login', component: AuthComponent },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+  },
   { path: '**', component: NonFoundComponent },
 ];
 
