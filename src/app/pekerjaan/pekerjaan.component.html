@@ -1,1 +1,149 @@
-<p>pekerjaan works!</p>
+<!-- Navbar -->
+<section>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light bg-white pt-lg-25 pb-lg-25 pt-15 pb-35">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/img/cbi-logo.png" alt="cbi-logo" srcset="../assets/img/cbi-logo.png" width="90px" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto text-lg gap-lg-0 gap-2">
+          <li class="nav-item my-auto">
+            <a class="nav-link" aria-current="page" href="/home">Home</a>
+          </li>
+          <li class="nav-item my-auto">
+            <a class="nav-link active" href="pekerjaan">Pekerjaan</a>
+          </li>
+          <li class="nav-item my-auto">
+            <a class="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill" href="./src/sign-in.html"
+              role="button">Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+
+<!-- Detail Content -->
+<section class="detail pt-lg-60">
+  <div class="container-xxl container-fluid">
+    <div class="detail-header pb-50">
+      <h2 class="text-4xl fw-bold color-palette-1 text-start mb-10">
+        Daftar Lowongan Pekerjaan
+      </h2>
+      <p class="text-lg color-palette-1 mb-0">
+        Carilah pekerjaanmu impianmu sekarang.
+      </p>
+      <input type="text" class="form-control rounded-pill text-lg mt-2 mb-" id="ID" name="ID"
+        aria-describedby="verifyID" placeholder="Cari Pekerjaan" />
+    </div>
+    <div *ngFor="let item of pekerjaan" class="row mb-5">
+      <div class="col-md-2 col-4 mb-4" style="margin-right:25px">
+        <a class="" data-bs-toggle="modal" href="#modal{{item.id}}" role="button">
+          <img src="http://localhost:3000/uploads/banner-pekerjaan/{{item.image}}" width="280" height="250"
+            class="img-fluid" alt="" />
+        </a>
+      </div>
+      <div class="col-9 pb-50 d-md-block">
+        <h2 class="text-4xl fw-bold color-palette-1 text-start mb-10 mt-10">
+          {{item.pekerjaan}}
+        </h2>
+        <p class="text-lg color-palette-2 mb-0">Deskripsi :</p>
+        <p class="text-lg color-palette-2 mb-0" style="text-align: justify;">
+          Hai Jobseeker... <br>
+          We Are Hiring {{item.pekerjaan}} dengan Kualifikasi yang terlampir seperti pada poster. Daftar sekarang dan
+          Bergabung dengan Tim Proffessional.
+        </p>
+        <br />
+        <a href="/lamar-pekerjaan/{{item.id}}" type="submit"
+          class="btn btn-submit rounded-pill fw-medium text-white border-0 text-lg">Daftar Sekarang!</a>
+      </div>
+      <hr />
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<section class="footer pt-50">
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 text-lg-start text-center">
+          <a href="" class="mb-30">
+            <img src="../assets/img/cbi-logo.png" alt="" srcset="../assets/img/cbi-logo.png" width="90" />
+          </a>
+          <p class="text-lg fw-semibold color-palette-1 mt-2 mb-12">
+            CITRA BORNEO INDAH GROUP
+          </p>
+          <p class="mt-20 text-lg color-palette-1 mb-30">
+            Copyright 2022. All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-lg-8 mt-lg-0 mt-20">
+          <div class="row gap-sm-0">
+            <div class="col-md-6 col-6 mb-lg-0 mb-25">
+              <p class="text-lg fw-semibold color-palette-1 mb-12">
+                Company
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-6">
+                  <a href="https://ssms.co.id/" class="text-lg color-palette-1 text-decoration-none">PT Sawit Sumbermas
+                    Sarana Tbk</a>
+                </li>
+                <li class="mb-6">
+                  <a href="https://www.borneonews.co.id/" class="text-lg color-palette-1 text-decoration-none">Borneo
+                    News</a>
+                </li>
+                <li class="mb-6">
+                  <a href="" class="text-lg color-palette-1 text-decoration-none">Terms of Use</a>
+                </li>
+                <li class="mb-6">
+                  <a href="" class="text-lg color-palette-1 text-decoration-none">Privacy & Policy</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-6 col-12 mt-lg-0 mt-md-0 mt-25">
+              <p class="text-lg fw-semibold color-palette-1 mb-12">
+                Address
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-6">
+                  <a href="mailto: recruitment@citraborneo.co.id"
+                    class="text-lg color-palette-1 text-decoration-none">recruitment@citraborneo.co.id</a>
+                </li>
+                <li class="mb-6">
+                  <a href="mailto: mochammad.faris@citraborneo.co.id"
+                    class="text-lg color-palette-1 text-decoration-none">mochammad.faris@citraborneo.co.id</a>
+                </li>
+                <li class="mb-6">
+                  <a href="https://www.google.com/maps/place/Kantor+Pusat+Citra+Borneo+Indah+Group/@-2.673612,111.6357209,16.96z/data=!4m5!3m4!1s0x2e08ed762333c16b:0x507746f0f9912d5b!8m2!3d-2.6734906!4d111.6387853"
+                    class="text-lg color-palette-1 text-decoration-none">Jalan H. Udan Said No.47, Baru, Arut Selatan,
+                    Kotawaringin Barat, Kalimantan Tengah 74113</a>
+                </li>
+                <li class="mb-6">
+                  <a href="tel: 02111229090" class="text-lg color-palette-1 text-decoration-none">021 - 1122 - 9090</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<div *ngFor="let item of pekerjaan" class="modal fade" id="modal{{item.id}}" aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="http://localhost:3000/uploads/banner-pekerjaan/{{item.image}}" width="100%" class="img-fluid"
+          alt="" />
+      </div>
+    </div>
+  </div>
+</div>
