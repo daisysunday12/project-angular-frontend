@@ -5,8 +5,10 @@ import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import * as $ from 'jquery';
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { KandidatComponent } from './kandidat/kandidat.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PekerjaanComponent } from './pekerjaan/pekerjaan.component';
 import { PekerjaanFormComponent } from './pekerjaan-form/pekerjaan-form.component';
@@ -19,7 +21,8 @@ import { PekerjaanUploadFileComponent } from './pekerjaan-upload-file/pekerjaan-
     PekerjaanComponent,
     PekerjaanFormComponent,
     PekerjaanUploadFileComponent,
-    PekerjaanDetailsComponent
+    PekerjaanDetailsComponent,
+    KandidatComponent
   ],
   imports: [
     CommonModule,
