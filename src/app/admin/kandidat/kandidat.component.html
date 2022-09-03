@@ -121,9 +121,8 @@
   </main>
 </section>
 
-<div *ngFor="let item of kandidatList" class="modal fade modal-dialog modal-lg" id="myModal{{item.id}}"
-  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-  aria-hidden="true">
+<div class="modal fade modal-dialog modal-lg" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -133,15 +132,14 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-2">
-            <img id="image" alt="FotoKandidat" width="110%"
-              src="http://localhost:3000/uploads/data-kandidat/img/{{item.image}}">
+            <img id="image" alt="FotoKandidat" width="110%" src="http://localhost:3000/uploads/data-kandidat/img/">
           </div>
           <div class="col-md-10">
             <table class="table table-sm table-borderless">
               <tbody>
                 <tr style="padding-bottom:-15px !important">
                   <td>Nama </td>
-                  <td>: {{item.nama}}
+                  <td>: <span id="nama"></span>
                   </td>
                   <td></td>
                   <td></td>
@@ -149,46 +147,46 @@
                 </tr>
                 <tr style="margin-left:-15px !important">
                   <td>TTL </td>
-                  <td>: <span id="tempat">{{item.tempat}}</span>, <span id="tanggallahir">{{item.tanggallahir}}</span>
+                  <td>: <span id="tempat"></span>, <span id="tanggallahir"></span>
                   </td>
                 </tr>
                 <tr>
                   <td>Jenis Kelamin </td>
-                  <td>: <span id="jk">{{item.jk}}</span>
+                  <td>: <span id="jk"></span>
                   </td>
                 </tr>
                 <tr>
                   <td>Pekerjaan Yang Dilamar</td>
-                  <td>: <span id="pekerjaan">{{item.Pekerjaan.pekerjaan}}</span></td>
+                  <td>: <span id="pekerjaan"></span></td>
                 </tr>
                 <tr>
                   <td>Salary</td>
-                  <td>: <span id="salary">{{item.salary}}</span></td>
+                  <td>: <span id="salary"></span></td>
                 </tr>
                 <tr style="padding-bottom:-15px !important">
                 <tr>
                   <td>Pendidikan</td>
-                  <td>: <span id="pendidikan">{{item.pendidikan}}</span></td>
+                  <td>: <span id="pendidikan"></span></td>
                 </tr>
                 <tr>
                   <td>Jurusan</td>
-                  <td>: <span id="jurusan">{{item.jurusan}}</span></td>
+                  <td>: <span id="jurusan"></span></td>
                 </tr>
                 <tr>
                   <td>Provinsi</td>
-                  <td>: <span id="prov">{{item.prov}}</span></td>
+                  <td>: <span id="prov"></span></td>
                 </tr>
                 <tr>
                   <td>Kabupaten</td>
-                  <td>: <span id="kab">{{item.kab}}</span></td>
+                  <td>: <span id="kab"></span></td>
                 </tr>
                 <tr>
                   <td>Kewarganegaraan</td>
-                  <td>: <span id="kewarganegaraan">{{item.kewarganegaraan}}</span></td>
+                  <td>: <span id="kewarganegaraan"></span></td>
                 </tr>
                 <tr>
                   <td>No Telp</td>
-                  <td>: <span id="notelp">{{item.notelp}}</span></td>
+                  <td>: <span id="notelp"></span></td>
                 </tr>
               </tbody>
             </table>
@@ -198,7 +196,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"><i class="fa fa-print"></i> Print Biodata</button>
         <button type="button" class="btn btn-primary"><i class="fa fa-download"></i> Preview CV</button>
-        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Delete
+        <button type="button" data-id="" id="tampilModalUbah" class="btn btn-danger"><i class="fa fa-trash"></i> Delete
           Profile</button>
       </div>
     </div>

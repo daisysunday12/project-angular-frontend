@@ -71,8 +71,9 @@ export class ApiservicesService {
   }
 
   deleteKandidat(params: any): Observable<any> {
+    console.log(params);
     const url = environment.API_EndPoint + 'kandidat/del/' + params;
     this.getToken();
-    return this.httpClient.delete<any>(url).pipe(map((data) => data));
+    return this.httpClient.delete<any>(url, this.httpOptions).pipe(map((data) => data));
   }
 }

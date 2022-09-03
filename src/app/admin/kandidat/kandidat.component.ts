@@ -4,6 +4,7 @@ import { ColDef } from 'ag-grid-community';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { refresh } from 'aos';
 declare var $: any;
 
 @Component({
@@ -20,6 +21,7 @@ export class KandidatComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKandidatList();
+    this.actionRenderDelete();
   }
 
   getKandidatList() {
@@ -102,27 +104,8 @@ export class KandidatComponent implements OnInit {
   ];
   rowData: any = [];
 
-  actionRender(param: any) {
-    let div = document.createElement('div');
-    let htmlCode = `<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal` + param.data.id + `">
-    Show
-  </button>\n` + `<button type="button" class="btn btn-sm btn-danger">Delete</button> \n`;
-    div.innerHTML = htmlCode;
+  actionRenderDelete() {
 
-    // handle show
-    let showButton = div.querySelector('.btn-primary')
-    // @ts-ignore
-    showButton.addEventListener('click', () => {
-      this.loadKandidatDetails(param.data._id)
-    })
-    // handle view delete
-    let deleteButton = div.querySelector('.btn-danger')
-    // @ts-ignore
-    deleteButton.addEventListener('click', () => {
-      console.log(param);
-      this.deletePekerjaan(param)
-    })
-    return div;
   }
 
   loadKandidatDetails(param: any) {
@@ -143,21 +126,22 @@ export class KandidatComponent implements OnInit {
       confirmButtonText: 'Yes, Delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        that.apiService.deleteKandidat(param.data.id).subscribe(res => {
+        that.apiService.deleteKandidat(param).subscribe(res => {
           if (res.msg === 'data berhasil dihapus') {
-            this.getKandidatList();
             Swal.fire(
               'Deleted!',
               'Your file has been deleted.',
               'success',
             )
-          } else {
+            $("#myModal").modal("hide");
             this.getKandidatList();
+          } else {
             Swal.fire(
               'Failed!',
               'Your file has been failed to delete.',
               'error',
             )
+            this.getKandidatList();
           }
         })
       }
@@ -165,56 +149,29 @@ export class KandidatComponent implements OnInit {
   }
 
   onRowClicked(event: any) {
-    // $("#image").attr("src", "http://localhost:3000/uploads/data-kandidat/img/" + event.data.image);
-    // $("btn-danger").attr("onClick", "http://localhost:3000/uploads/data-kandidat/img/" + event.data.image);
-    // $("#nama").text(event.data.nama);
-    // $("#tempat").text(event.data.tempat);
-    // $("#tanggallahir").text(event.data.tanggallahir);
-    // $("#jk").text(event.data.jk);
-    // $("#pekerjaan").text(event.data.Pekerjaan.pekerjaan);
-    // $("#pendidikan").text(event.data.pendidikan);
-    // $("#jurusan").text(event.data.jurusan);
-    // $("#salary").text(event.data.salary);
-    // $("#prov").text(event.data.prov);
-    // $("#kab").text(event.data.kab);
-    // $("#kewarganegaraan").text(event.data.kewarganegaraan);
-    // $("#notelp").text(event.data.notelp);
-    $("#myModal" + event.data.id).modal("show");
+    $("#image").attr("src", "http://localhost:3000/uploads/data-kandidat/img/" + event.data.image);
+    $("btn-danger").attr("onClick", "http://localhost:3000/uploads/data-kandidat/img/" + event.data.image);
+    $("#nama").text(event.data.nama);
+    $("#tempat").text(event.data.tempat);
+    $("#tanggallahir").text(event.data.tanggallahir);
+    $("#jk").text(event.data.jk);
+    $("#pekerjaan").text(event.data.Pekerjaan.pekerjaan);
+    $("#pendidikan").text(event.data.pendidikan);
+    $("#jurusan").text(event.data.jurusan);
+    $("#salary").text(event.data.salary);
+    $("#prov").text(event.data.prov);
+    $("#kab").text(event.data.kab);
+    $("#kewarganegaraan").text(event.data.kewarganegaraan);
+    $("#notelp").text(event.data.notelp);
+    $("#myModal").modal("show");
+
+    $('#tampilModalUbah').on('click', () => {
+      const id = event.data.id
+      this.deletePekerjaan(id)
+
+    });
   }
 
-  logout(event: any) {
-    console.log('eventButton', event)
-    const that = this;
-    Swal.fire({
-      title: 'Are You Sure?',
-      text: "You won't be able to revert this!?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        that.apiService.deleteKandidat(event.data.id).subscribe(res => {
-          if (res.msg === 'data berhasil dihapus') {
-            this.getKandidatList();
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success',
-            )
-          } else {
-            this.getKandidatList();
-            Swal.fire(
-              'Failed!',
-              'Your file has been failed to delete.',
-              'error',
-            )
-          }
-        })
-      }
-    })
-  }
   printThisPage() {
     window.print()
   }
