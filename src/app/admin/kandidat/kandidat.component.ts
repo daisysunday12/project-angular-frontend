@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiservicesService } from '../apiservices.service';
 import { ColDef } from 'ag-grid-community';
-import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { refresh } from 'aos';
 declare var $: any;
 
 @Component({
@@ -21,7 +19,6 @@ export class KandidatComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKandidatList();
-    this.actionRenderDelete();
   }
 
   getKandidatList() {
@@ -104,10 +101,6 @@ export class KandidatComponent implements OnInit {
   ];
   rowData: any = [];
 
-  actionRenderDelete() {
-
-  }
-
   loadKandidatDetails(param: any) {
     this.apiService.loadKandidatDetails(param).subscribe(res => {
       this.kandidatDetails = res
@@ -164,11 +157,9 @@ export class KandidatComponent implements OnInit {
     $("#kewarganegaraan").text(event.data.kewarganegaraan);
     $("#notelp").text(event.data.notelp);
     $("#myModal").modal("show");
-
     $('#tampilModalUbah').on('click', () => {
       const id = event.data.id
       this.deletePekerjaan(id)
-
     });
   }
 
