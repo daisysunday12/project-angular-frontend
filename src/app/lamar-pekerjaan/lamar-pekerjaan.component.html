@@ -1,1 +1,468 @@
-<p>lamar-pekerjaan works!</p>
+<!-- Navbar -->
+<section>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light bg-white pt-lg-25 pb-lg-25 pt-15 pb-35">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/img/cbi-logo.png" alt="cbi-logo" srcset="../assets/img/cbi-logo.png" width="90px" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto text-lg gap-lg-0 gap-2">
+          <li class="nav-item my-auto">
+            <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item my-auto">
+            <a class="nav-link active" href="./pekerjaan.html">Pekerjaan</a>
+          </li>
+          <li class="nav-item my-auto">
+            <a class="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill" href="./src/sign-in.html"
+              role="button">Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+
+<!-- Detail Content -->
+<section class="detail pt-lg-60">
+  <div class="container-xxl container-fluid">
+    <div class="detail-header pb-50">
+      <h2 class="text-4xl fw-bold color-palette-1 text-start mb-10">
+        {{pekerjaanDetails.pekerjaan}}
+      </h2>
+      <p class="text-lg color-palette-1 mb-0">
+        Lengkapin data anda pada form tersebut!
+      </p>
+    </div>
+    <div class="row mb-5">
+      <div class="col-xl-3 col-lg-4 col-md-5 pb-30 pb-md-0 pe-md-25 text-md-start">
+        <div class="row align-items-center">
+          <div class="col-md-12 col-4">
+            <img src="http://localhost:3000/uploads/banner-pekerjaan/{{pekerjaanDetails.image}}" width="280"
+              height="380" class="img-fluid" alt="" />
+          </div>
+          <!-- Mobile: Game title -->
+          <div class="col-md-12 col-8 d-md-none d-block">
+            <h2 class="text-xl fw-bold color-palette-1 text-start mb-10">
+              Mohon Maaf Device Tidak Support
+            </h2>
+            <p class="text-sm color-palette-2 text-start mb-0">
+              Silahkan Menggunakan Laptop/PC
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9 col-lg-8 col-md-7 ps-md-25">
+        <!-- Desktop: Game title -->
+        <div class="pb-50 d-md-block d-none">
+          <h2 class="text-4xl fw-bold color-palette-1 text-start mb-3 mt-10">
+            Form Pendaftaran
+          </h2>
+          <form [formGroup]="kandidatForm" (ngSubmit)="createKandidat(kandidatForm.value)">
+            <input formControlName="pekerjaan" type="hidden" class="form-control rounded-pill text-lg" id="idku"
+              name="pekerjaan" aria-describedby="idku" value="{{pekerjaanDetails._id}}" />
+            <div class="row">
+              <div class="col-md-6 pt-10">
+                <label for="name" class="form-label text-lg fw-medium color-palette-1 mb-10">Nama Lengkap</label>
+                <input autocomplete="off" formControlName="nama" type="text" class="form-control rounded-pill text-lg"
+                  id="name" name="nama" aria-describedby="name" placeholder="Enter your name" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['nama'].errors && kandidatForm.controls['nama'].touched,
+                    'is-valid': !kandidatForm.controls['nama'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['nama'].errors  && kandidatForm.controls['nama'].touched">
+                  <span *ngIf='kandidatForm.controls["nama"].errors["required"]'>Name is required.</span>
+                  <span *ngIf="kandidatForm.controls['nama'].errors['minlength']">Name is must contains min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['nama'].errors['maxlength']">Name is must contains max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-6 pt-10">
+                <label for="email" class="form-label text-lg fw-medium color-palette-1 mb-10">Email</label>
+                <input formControlName="email" autocomplete="off" type="text" class="form-control rounded-pill text-lg"
+                  id="email" name="email" aria-describedby="name" placeholder="Enter your email" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['email'].errors && kandidatForm.controls['email'].touched,
+                    'is-valid': !kandidatForm.controls['email'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['email'].errors  && kandidatForm.controls['email'].touched">
+                  <span *ngIf='kandidatForm.controls["email"].errors["required"]'>Email is required.</span>
+                  <span *ngIf="kandidatForm.controls['email'].errors['minlength']">Email is must contains min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['email'].errors['maxlength']">Email is must contains max
+                    50 char length
+                  </span>
+                  <span *ngIf="kandidatForm.controls['email'].errors['email']">Format email invalid!
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-10">
+              <div class="col-6">
+                <label for="email" class="form-label text-lg fw-medium color-palette-1 mb-10">Tempat Lahir</label>
+                <input formControlName="tempat" type="text" class="form-control rounded-pill text-lg" id="tempat"
+                  name="tempat" aria-describedby="name" placeholder="Enter your name" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['tempat'].errors && kandidatForm.controls['tempat'].touched,
+                    'is-valid': !kandidatForm.controls['tempat'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['tempat'].errors  && kandidatForm.controls['tempat'].touched">
+                  <span *ngIf='kandidatForm.controls["tempat"].errors["required"]'>Tempat is required.</span>
+                  <span *ngIf="kandidatForm.controls['tempat'].errors['minlength']">Tempat is must contains min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['tempat'].errors['maxlength']">Tempat is must contains max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="email" class="form-label text-lg fw-medium color-palette-1 mb-10">Tanggal Lahir</label>
+                <input formControlName="tanggal" type="date" class="form-control rounded-pill text-lg" id="email"
+                  name="email" aria-describedby="name" placeholder="Enter your name" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['tanggal'].errors && kandidatForm.controls['tanggal'].touched,
+                    'is-valid': !kandidatForm.controls['tanggal'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['tanggal'].errors  && kandidatForm.controls['tanggal'].touched">
+                  <span *ngIf='kandidatForm.controls["tanggal"].errors["required"]'>Tanggal Lahir is
+                    required.</span>
+                </div>
+              </div>
+            </div>
+            <div class="pt-10"></div>
+            <div class="pt-10">
+              <label for="jk" class="form-label text-lg fw-medium color-palette-1 mb-10">Jenis Kelamin</label>
+              <br />
+              <input formControlName="jk" value="L" type="radio" class="form-check-input text-lg" id="L" name="jk"
+                aria-describedby="name" required />
+              <label for="L">Laki-Laki</label>
+              <input formControlName="jk" value="P" style="margin-left: 30px" type="radio"
+                class="form-check-input text-lg" id="P" name="jk" aria-describedby="name" required />
+              <label for="P">Perempuan</label>
+            </div>
+            <div class="pt-10">
+              <label for="email" class="form-label text-lg fw-medium color-palette-1 mb-10">Alamat</label>
+              <textarea formControlName="alamat" class="form-control text-lg" rows="3" [ngClass]="{
+                'is-invalid': kandidatForm.controls['alamat'].errors && kandidatForm.controls['alamat'].touched,
+                'is-valid': !kandidatForm.controls['alamat'].errors
+              }"> </textarea>
+              <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                *ngIf="kandidatForm.controls['alamat'].errors  && kandidatForm.controls['alamat'].touched">
+                <span *ngIf='kandidatForm.controls["alamat"].errors["required"]'>Alamat is required.</span>
+                <span *ngIf="kandidatForm.controls['alamat'].errors['minlength']">Alamat is must contains min 3
+                  char length</span>
+                <span *ngIf="kandidatForm.controls['alamat'].errors['maxlength']">Alamat is must contains max
+                  50 char length
+                </span>
+              </div>
+            </div>
+            <div class="row pt-10">
+              <div class="col-6">
+                <label for="email" class="form-label text-lg fw-medium color-palette-1 mb-10">Kabupaten</label>
+                <input formControlName="kab" type="text" class="form-control rounded-pill text-lg" id="email"
+                  name="email" aria-describedby="name" placeholder="Enter your name" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['kab'].errors && kandidatForm.controls['kab'].touched,
+                    'is-valid': !kandidatForm.controls['kab'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['kab'].errors  && kandidatForm.controls['kab'].touched">
+                  <span *ngIf='kandidatForm.controls["kab"].errors["required"]'>Kabupaten is required.</span>
+                  <span *ngIf="kandidatForm.controls['kab'].errors['minlength']">Kabupaten is must contains min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['kab'].errors['maxlength']">Kabupaten is must contains max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="email" class="form-label text-lg fw-medium color-palette-1 mb-10">Provinsi</label>
+                <input type="text" formControlName="prov" class="form-control rounded-pill text-lg" id="email"
+                  name="email" [ngClass]="{
+                  'is-invalid': kandidatForm.controls['prov'].errors && kandidatForm.controls['prov'].touched,
+                  'is-valid': !kandidatForm.controls['prov'].errors
+                }" aria-describedby="name" placeholder="Enter your name" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['prov'].errors  && kandidatForm.controls['prov'].touched">
+                  <span *ngIf='kandidatForm.controls["prov"].errors["required"]'>Provinsi is required.</span>
+                  <span *ngIf="kandidatForm.controls['prov'].errors['minlength']">Provinsi is must contains min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['prov'].errors['maxlength']">Provinsi is must contains max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-10">
+              <div class="col-6">
+                <label for="noTel" class="form-label text-lg fw-medium color-palette-1 mb-10">No Telp</label>
+                <input type="text" formControlName="notelp" class="form-control rounded-pill text-lg" id="noTel"
+                  name="email" aria-describedby="name" placeholder="Enter your Phone" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['notelp'].errors && kandidatForm.controls['notelp'].touched,
+                    'is-valid': !kandidatForm.controls['notelp'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['notelp'].errors  && kandidatForm.controls['notelp'].touched">
+                  <span *ngIf='kandidatForm.controls["notelp"].errors["required"]'>No Telp is required.</span>
+                  <span *ngIf="kandidatForm.controls['notelp'].errors['minlength']">No Telp is must contains min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['notelp'].errors['maxlength']">No Telp is must contains max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="kewarganegaraan"
+                  class="form-label text-lg fw-medium color-palette-1 mb-10">Kewarganegaraan</label>
+                <input type="text" class="form-control rounded-pill text-lg" id="kewarganegaraan" name="email"
+                  aria-describedby="name" placeholder="Enter your Kewarganegaraan" formControlName="kewarganegaraan"
+                  [ngClass]="{
+                    'is-invalid': kandidatForm.controls['kewarganegaraan'].errors && kandidatForm.controls['kewarganegaraan'].touched,
+                    'is-valid': !kandidatForm.controls['kewarganegaraan'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['kewarganegaraan'].errors  && kandidatForm.controls['kewarganegaraan'].touched">
+                  <span *ngIf='kandidatForm.controls["kewarganegaraan"].errors["required"]'>Kewarganegaraan is
+                    required.</span>
+                  <span *ngIf="kandidatForm.controls['kewarganegaraan'].errors['minlength']">Kewarganegaraan is must
+                    contains
+                    min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['kewarganegaraan'].errors['maxlength']">Kewarganegaraan is must
+                    contains
+                    max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-10">
+              <div class="col-6">
+                <label for="pendidikan" class="form-label text-lg fw-medium color-palette-1 mb-10">Pendidikan
+                  Terakhir</label>
+                <input type="text" class="form-control rounded-pill text-lg" id="pendidikan" name="email"
+                  aria-describedby="name" placeholder="Enter your Education" autocomplete="off"
+                  formControlName="pendidikan" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['pendidikan'].errors && kandidatForm.controls['pendidikan'].touched,
+                    'is-valid': !kandidatForm.controls['pendidikan'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['pendidikan'].errors  && kandidatForm.controls['pendidikan'].touched">
+                  <span *ngIf='kandidatForm.controls["pendidikan"].errors["required"]'>Pendidikan is
+                    required.</span>
+                  <span *ngIf="kandidatForm.controls['pendidikan'].errors['minlength']">Pendidikan is must
+                    contains
+                    min 2
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['pendidikan'].errors['maxlength']">Pendidikan is must
+                    contains
+                    max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="jurusan" class="form-label text-lg fw-medium color-palette-1 mb-10">Jurusan</label>
+                <input type="text" class="form-control rounded-pill text-lg" id="jurusan" autocomplete="off"
+                  name="email" aria-describedby="name" placeholder="Enter your Jurusan" formControlName="jurusan"
+                  [ngClass]="{
+                    'is-invalid': kandidatForm.controls['jurusan'].errors && kandidatForm.controls['jurusan'].touched,
+                    'is-valid': !kandidatForm.controls['jurusan'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['jurusan'].errors  && kandidatForm.controls['jurusan'].touched">
+                  <span *ngIf='kandidatForm.controls["jurusan"].errors["required"]'>Jurusan is
+                    required.</span>
+                  <span *ngIf="kandidatForm.controls['jurusan'].errors['minlength']">Jurusan is must
+                    contains
+                    min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['jurusan'].errors['maxlength']">Jurusan is must
+                    contains
+                    max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-10">
+              <div class="col-6">
+                <label for="salary" class="form-label text-lg fw-medium color-palette-1 mb-10">Rengtang Gaji</label>
+                <input type="number" class="form-control rounded-pill text-lg" id="salary" name="email"
+                  aria-describedby="name" placeholder="Enter your Salary range" autocomplete="off"
+                  formControlName="salary" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['salary'].errors && kandidatForm.controls['salary'].touched,
+                    'is-valid': !kandidatForm.controls['salary'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['salary'].errors  && kandidatForm.controls['salary'].touched">
+                  <span *ngIf='kandidatForm.controls["salary"].errors["required"]'>Rengtang Gaji is
+                    required.</span>
+                  <span *ngIf="kandidatForm.controls['salary'].errors['minlength']">Rengtang Gaji is must
+                    contains
+                    min 2
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['salary'].errors['maxlength']">Rengtang Gaji is must
+                    contains
+                    max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+
+            </div>
+            <div class="pt-10">
+              <label for="alamatS" class="form-label text-lg fw-medium color-palette-1 mb-10">Alamat Sekarang</label>
+              <textarea id="alamatS" class="form-control text-lg" rows="3" formControlName="lokasi" [ngClass]="{
+                'is-invalid': kandidatForm.controls['lokasi'].errors && kandidatForm.controls['lokasi'].touched,
+                'is-valid': !kandidatForm.controls['lokasi'].errors
+              }">
+              </textarea>
+              <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                *ngIf="kandidatForm.controls['lokasi'].errors  && kandidatForm.controls['lokasi'].touched">
+                <span *ngIf='kandidatForm.controls["lokasi"].errors["required"]'>Lokasi Sekarang is
+                  required.</span>
+                <span *ngIf="kandidatForm.controls['lokasi'].errors['minlength']">Lokasi Sekarang is must
+                  contains
+                  min 3
+                  char length</span>
+                <span *ngIf="kandidatForm.controls['lokasi'].errors['maxlength']">Lokasi Sekarang is must
+                  contains
+                  max
+                  50 char length
+                </span>
+              </div>
+            </div>
+            <div class="row pt-10">
+              <div class="col-6">
+                <label for="sLoker" class="form-label text-lg fw-medium color-palette-1 mb-10">Sumber Loker</label>
+                <input type="text" class="form-control rounded-pill text-lg" id="sLoker" name="email"
+                  aria-describedby="name" placeholder="Enter your Information Jobs" autocomplete="off"
+                  formControlName="sumber" [ngClass]="{
+                    'is-invalid': kandidatForm.controls['sumber'].errors && kandidatForm.controls['sumber'].touched,
+                    'is-valid': !kandidatForm.controls['sumber'].errors
+                  }" />
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['sumber'].errors  && kandidatForm.controls['sumber'].touched">
+                  <span *ngIf='kandidatForm.controls["sumber"].errors["required"]'>Sumber Loker is
+                    required.</span>
+                  <span *ngIf="kandidatForm.controls['sumber'].errors['minlength']">Sumber Loker is must
+                    contains
+                    min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['sumber'].errors['maxlength']">Sumber Loker is must
+                    contains
+                    max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="KeteranganSLoker" class="form-label text-lg fw-medium color-palette-1 mb-10">Keterangan
+                  Sumber Loker</label>
+                <textarea id="KeteranganSLoker" class="form-control text-lg" rows="3" formControlName="sumberket"
+                  [ngClass]="{
+                  'is-invalid': kandidatForm.controls['sumberket'].errors && kandidatForm.controls['sumberket'].touched,
+                  'is-valid': !kandidatForm.controls['sumberket'].errors
+                }">
+                </textarea>
+                <div class="mt-2 alert alert-danger rounded-pill" role="alert"
+                  *ngIf="kandidatForm.controls['sumberket'].errors  && kandidatForm.controls['sumberket'].touched">
+                  <span *ngIf='kandidatForm.controls["sumberket"].errors["required"]'>Sumber Keterangan is
+                    required.</span>
+                  <span *ngIf="kandidatForm.controls['sumberket'].errors['minlength']">Sumber Keterangan is must
+                    contains
+                    min 3
+                    char length</span>
+                  <span *ngIf="kandidatForm.controls['sumberket'].errors['maxlength']">Sumber Keterangan is must
+                    contains
+                    max
+                    50 char length
+                  </span>
+                </div>
+              </div>
+            </div>
+            <button type="submit"
+              class="btn btn-submit rounded-pill fw-medium text-white border-0 text-lg mt-3">Continue</button>
+          </form>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<section class="footer pt-50">
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 text-lg-start text-center">
+          <a href="" class="mb-30">
+            <img src="../assets/img/cbi-logo.png" alt="" srcset="../assets/img/cbi-logo.png" width="90" />
+          </a>
+          <p class="text-lg fw-semibold color-palette-1 mt-2 mb-12">
+            CITRA BORNEO INDAH GROUP
+          </p>
+          <p class="mt-20 text-lg color-palette-1 mb-30">
+            Copyright 2022. All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-lg-8 mt-lg-0 mt-20">
+          <div class="row gap-sm-0">
+            <div class="col-md-6 col-6 mb-lg-0 mb-25">
+              <p class="text-lg fw-semibold color-palette-1 mb-12">
+                Company
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-6">
+                  <a href="https://ssms.co.id/" class="text-lg color-palette-1 text-decoration-none">PT Sawit Sumbermas
+                    Sarana Tbk</a>
+                </li>
+                <li class="mb-6">
+                  <a href="https://www.borneonews.co.id/" class="text-lg color-palette-1 text-decoration-none">Borneo
+                    News</a>
+                </li>
+                <li class="mb-6">
+                  <a href="" class="text-lg color-palette-1 text-decoration-none">Terms of Use</a>
+                </li>
+                <li class="mb-6">
+                  <a href="" class="text-lg color-palette-1 text-decoration-none">Privacy & Policy</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-6 col-12 mt-lg-0 mt-md-0 mt-25">
+              <p class="text-lg fw-semibold color-palette-1 mb-12">
+                Address
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-6">
+                  <a href="mailto: recruitment@citraborneo.co.id"
+                    class="text-lg color-palette-1 text-decoration-none">recruitment@citraborneo.co.id</a>
+                </li>
+                <li class="mb-6">
+                  <a href="mailto: mochammad.faris@citraborneo.co.id"
+                    class="text-lg color-palette-1 text-decoration-none">mochammad.faris@citraborneo.co.id</a>
+                </li>
+                <li class="mb-6">
+                  <a href="https://www.google.com/maps/place/Kantor+Pusat+Citra+Borneo+Indah+Group/@-2.673612,111.6357209,16.96z/data=!4m5!3m4!1s0x2e08ed762333c16b:0x507746f0f9912d5b!8m2!3d-2.6734906!4d111.6387853"
+                    class="text-lg color-palette-1 text-decoration-none">Jalan H. Udan Said No.47, Baru, Arut Selatan,
+                    Kotawaringin Barat, Kalimantan Tengah 74113</a>
+                </li>
+                <li class="mb-6">
+                  <a href="tel: 02111229090" class="text-lg color-palette-1 text-decoration-none">021 - 1122 - 9090</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>

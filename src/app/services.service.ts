@@ -15,6 +15,16 @@ export class ServicesService {
     return this.httpClient.get(url).pipe(map(data => data));
   }
 
+  getPekerjaanDetails(params: any) {
+    const url = environment.API_EndPoint + 'pekerjaan/' + params;
+    return this.httpClient.get(url).pipe(map(data => data));
+  }
+
+  createKandidat(data: any): Observable<any> {
+    const url = environment.API_EndPoint + 'kandidat/add';
+    return this.httpClient.post<any>(url, data).pipe(map((data) => data));
+  }
+
   // login
   login(username: any, password: any) {
     const url = environment.API_EndPoint + 'auth';
