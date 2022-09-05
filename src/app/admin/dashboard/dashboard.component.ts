@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApexChart, ApexDataLabels, ApexNonAxisChartSeries, ApexTitleSubtitle, ChartComponent, ApexAxisChartSeries, ApexXAxis, ApexStroke, ApexGrid } from 'ng-apexcharts';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
     enabled: true
   };
   result: any;
-  constructor(private router: Router) {
+  constructor(private router: Router, private elementRef: ElementRef) {
     this.chartOptions = {
       series: [
         {
@@ -87,8 +87,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "../assets/js/main2.js";
+    this.elementRef.nativeElement.appendChild(s);
   }
-
 
   logout() {
     Swal.fire({

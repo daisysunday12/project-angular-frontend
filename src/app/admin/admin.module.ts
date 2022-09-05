@@ -5,7 +5,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import * as $ from 'jquery';
+import { NgxPrintModule } from 'ngx-print';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { KandidatComponent } from './kandidat/kandidat.component';
@@ -14,6 +15,7 @@ import { PekerjaanComponent } from './pekerjaan/pekerjaan.component';
 import { PekerjaanFormComponent } from './pekerjaan-form/pekerjaan-form.component';
 import { PekerjaanDetailsComponent } from './pekerjaan-details/pekerjaan-details.component';
 import { PekerjaanUploadFileComponent } from './pekerjaan-upload-file/pekerjaan-upload-file.component';
+import { KandidatPreviewComponent } from './kandidat-preview/kandidat-preview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { PekerjaanUploadFileComponent } from './pekerjaan-upload-file/pekerjaan-
     PekerjaanFormComponent,
     PekerjaanUploadFileComponent,
     PekerjaanDetailsComponent,
-    KandidatComponent
+    KandidatComponent,
+    KandidatPreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,9 @@ import { PekerjaanUploadFileComponent } from './pekerjaan-upload-file/pekerjaan-
     AgGridModule,
     CKEditorModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPrintModule,
+    PdfViewerModule
   ]
 })
 export class AdminModule { }

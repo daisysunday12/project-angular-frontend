@@ -1,0 +1,80 @@
+<div id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Profile Kandidat</h5>
+      </div>
+      <div class="modal-body" id="print-me">
+        <div class="row">
+          <div class="col-md-2">
+            <img src="http://localhost:3000/uploads/data-kandidat/img/{{data.image}}" id="image" alt="FotoKandidat"
+              width="110%">
+          </div>
+          <div class="col-md-10">
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr style="padding-bottom:-15px !important">
+                  <td>Nama </td>
+                  <td>: {{data.nama}}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>: {{data.email}}</td>
+                </tr>
+                <tr style="margin-left:-15px !important">
+                  <td>TTL </td>
+                  <td>: {{data.tempat}}, {{data.tanggallahir}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Jenis Kelamin </td>
+                  <td>: {{data.jk}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Pekerjaan Yang Dilamar</td>
+                  <td>: {{data.Pekerjaan.pekerjaan}}</td>
+                </tr>
+
+                <tr>
+                  <td>Salary</td>
+                  <td>: {{data.salary}}</td>
+                </tr>
+                <tr style="padding-bottom:-15px !important">
+                <tr>
+                  <td>Pendidikan</td>
+                  <td>: {{data.pendidikan}}</td>
+                </tr>
+                <tr>
+                  <td>Jurusan</td>
+                  <td>: {{data.jurusan}}</td>
+                </tr>
+                <tr>
+                  <td>Provinsi</td>
+                  <td>: {{data.prov}}</td>
+                </tr>
+                <tr>
+                  <td>Kabupaten</td>
+                  <td>: {{data.kab}}</td>
+                </tr>
+                <tr>
+                  <td>Kewarganegaraan</td>
+                  <td>: {{data.kewarganegaraan}}</td>
+                </tr>
+                <tr>
+                  <td>No Telp</td>
+                  <td>: {{data.notelp}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-warning" (click)="print">Print</button>

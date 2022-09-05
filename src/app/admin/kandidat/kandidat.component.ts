@@ -142,6 +142,8 @@ export class KandidatComponent implements OnInit {
   }
 
   onRowClicked(event: any) {
+    $("#printbiodata").attr("href", "/admin/preview-kandidat/" + event.data.id);
+    $("#printfile").attr("href", "localhost:3000/public/uploads/data-kandidat/file/" + event.data.file);
     $("#image").attr("src", "http://localhost:3000/uploads/data-kandidat/img/" + event.data.image);
     $("btn-danger").attr("onClick", "http://localhost:3000/uploads/data-kandidat/img/" + event.data.image);
     $("#nama").text(event.data.nama);
@@ -161,9 +163,5 @@ export class KandidatComponent implements OnInit {
       const id = event.data.id
       this.deletePekerjaan(id)
     });
-  }
-
-  printThisPage() {
-    window.print()
   }
 }

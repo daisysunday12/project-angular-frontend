@@ -8,7 +8,7 @@ import { NonFoundComponent } from '../non-found/non-found.component';
 import { PekerjaanFormComponent } from './pekerjaan-form/pekerjaan-form.component';
 import { PekerjaanDetailsComponent } from './pekerjaan-details/pekerjaan-details.component';
 import { PekerjaanUploadFileComponent } from './pekerjaan-upload-file/pekerjaan-upload-file.component';
-
+import { KandidatPreviewComponent } from './kandidat-preview/kandidat-preview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' },
@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'update-pekerjaan/:id', component: PekerjaanFormComponent },
   { path: 'details-pekerjaan/:id', component: PekerjaanDetailsComponent },
   { path: 'upload-pekerjaan/:id', component: PekerjaanUploadFileComponent },
+  { path: 'preview-kandidat/:id', component: KandidatPreviewComponent },
   { path: '**', component: NonFoundComponent },
 ];
 

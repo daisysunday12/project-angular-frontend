@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pekerjaan } from './model/pekerjaan';
+import { Kandidat } from './model/kandidat';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +68,7 @@ export class ApiservicesService {
   loadKandidatDetails(data: any): Observable<any> {
     const url = environment.API_EndPoint + 'kandidat/' + data;
     this.getToken();
-    return this.httpClient.get<any>(url).pipe(map((data) => data));
+    return this.httpClient.get<any>(url, this.httpOptions).pipe(map((data) => data));
   }
 
   deleteKandidat(params: any): Observable<any> {
