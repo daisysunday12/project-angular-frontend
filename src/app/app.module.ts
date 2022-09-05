@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxPrintModule } from 'ngx-print';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,12 +33,10 @@ import { SuccessComponent } from './success/success.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPrintModule,
     FormsModule,
     ReactiveFormsModule,
     NgApexchartsModule,
     AgGridModule,
-    CKEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

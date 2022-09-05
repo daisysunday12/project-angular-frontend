@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ApexChart, ApexDataLabels, ApexNonAxisChartSeries, ApexTitleSubtitle, ChartComponent, ApexAxisChartSeries, ApexXAxis, ApexStroke, ApexGrid } from 'ng-apexcharts';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexDataLabels,
+  ApexTitleSubtitle,
+  ApexStroke,
+  ApexGrid,
+  ApexNonAxisChartSeries
+} from "ng-apexcharts";
+
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiservicesService } from '../apiservices.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  dataLabels: ApexDataLabels;
-  grid: ApexGrid;
-  stroke: ApexStroke;
-  title: ApexTitleSubtitle;
-};
 
 @Component({
   selector: 'app-dashboard',
@@ -20,77 +22,91 @@ export type ChartOptions = {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild("chart")
-  chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
 
-  chartSeries: ApexNonAxisChartSeries = [40, 32, 28, 55];
-
-  chartDetails: ApexChart = {
-    type: 'bar',
+  chartDiagram: ApexNonAxisChartSeries = [40, 32]
+  chartDetailsDiagram: ApexChart = {
+    type: 'pie',
     toolbar: {
       show: true
     }
-  };
+  }
+  titleLingkaran: ApexTitleSubtitle = {
+    text: "Kandidat Berdasarkan Jenis Kelamin",
+    align: "left"
+  }
+  label = ["Laki-Laki", "Perempuan"]
 
-  chartLabels = ["Apple", "Microsoft", "Facebook", "Google"];
+  chartSeries: ApexAxisChartSeries = [
+    {
+      name: "Desktops",
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+    }
+  ]
+  chartDetails: ApexChart = {
+    height: 350,
+    type: "line",
+    zoom: {
+      enabled: false
+    }
+  }
+  dataLabels: ApexDataLabels = {
+    enabled: false
+  }
+  stroke: ApexStroke = {
+    curve: "straight"
+  }
+  title: ApexTitleSubtitle = {
+    text: "Product Trends by Month",
+    align: "left"
+  }
+  grid: ApexGrid = {
+    row: {
+      colors: ["#f3f3f3", "transparent"],
+      opacity: 0.5
+    }
+  }
+  xaxis: ApexXAxis = {
+    categories: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep"
+    ]
+  }
 
-  chartTitle: ApexTitleSubtitle = {
-    text: 'Data Pekerjaan dan Jumlah Kandidat',
-    align: 'center'
-  };
-
-  chartDataLabels: ApexDataLabels = {
-    enabled: true
-  };
-  result: any;
-  constructor(private router: Router, private elementRef: ElementRef) {
-    this.chartOptions = {
-      series: [
-        {
-          name: "Laki-Laki",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-        },
-        {
-          name: "Perempuan",
-          data: [10, 0, 78, 90, 20, 10, 30, 15, 8]
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "line",
-        zoom: {
-          enabled: false
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: "straight"
-      },
-      title: {
-        text: 'Data Pekerjaan dan Jumlah Kandidat',
-        align: "left"
-      },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5
-        }
-      },
-      xaxis: {
-        categories: this.result
-      }
-    };
-
+  constructor(private crudService: ApiservicesService, private router: Router) {
   }
 
   ngOnInit(): void {
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.src = "../assets/js/main2.js";
-    this.elementRef.nativeElement.appendChild(s);
+    this.cekLogin()
+    this.getPekerjaanList()
+  }
+
+  result: any;
+  pekerjaan: any
+  getPekerjaanList() {
+    this.crudService.getPekerjaan().subscribe((res) => {
+      console.log(res);
+      this.result = res
+    });
+  }
+
+  cekLogin() {
+    this.crudService.loadKandidat().subscribe((res) => {
+      return;
+    }, err => {
+      this.navigateTo('./login')
+      Swal.fire(
+        'Warning!',
+        'Harap Login Terlebih Dahulu',
+        'warning',
+      )
+    })
   }
 
   logout() {

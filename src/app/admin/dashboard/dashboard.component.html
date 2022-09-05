@@ -110,25 +110,18 @@
       </p>
       <div class="main-content main-content-table overflow-auto">
         <div class="row">
-          <div class="chartContainer">
-            <div id="chart">
+          <div class="col-md-7">
+            <div class="chartContainer">
+              <apx-chart [series]="chartSeries" [chart]="chartDetails" [dataLabels]="dataLabels" [stroke]="stroke"
+                [title]="title" [grid]="grid" [xaxis]="xaxis">
+              </apx-chart>
             </div>
           </div>
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-            <div class="card-body pb-0">
-              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
-              <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+          <div class="col-md-5">
+            <div class="chartContainer diagramLingkaran">
+              <apx-chart [series]="chartDiagram" [chart]="chartDetailsDiagram" [title]="titleLingkaran"
+                [labels]="label">
+              </apx-chart>
             </div>
           </div>
         </div>
@@ -136,3 +129,6 @@
     </div>
   </main>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
