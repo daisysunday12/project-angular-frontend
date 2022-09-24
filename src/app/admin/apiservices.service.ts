@@ -33,6 +33,16 @@ export class ApiservicesService {
     this.getToken();
     return this.httpClient.get(url, this.httpOptions).pipe(map((data) => data));
   }
+  getTotalPria() {
+    const url = environment.API_EndPoint + 'kandidat/totalpria';
+    this.getToken();
+    return this.httpClient.get(url, this.httpOptions).pipe(map((data: any) => data));
+  }
+  getTotalWanita() {
+    const url = environment.API_EndPoint + 'kandidat/totalwanita';
+    this.getToken();
+    return this.httpClient.get(url, this.httpOptions).pipe(map((data: any) => data));
+  }
   deletePekerjaan(params: any): Observable<any> {
     const url = environment.API_EndPoint + 'pekerjaan/del/' + params;
     this.getToken();
